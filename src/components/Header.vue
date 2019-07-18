@@ -1,12 +1,28 @@
 <template>
     
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/login">Log In / User Nou</router-link>
+    <div id="nav">        
+        <router-link to="/" >Home</router-link> |
+        <router-link to="/login">Log In / User Nou</router-link> |
+        <router-link to="/things">Things</router-link>        
       <router-view/>
     </div>
       
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+        activeIndex: '1'        
+      };
+    },
+    methods: {
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath);
+      }
+    }
+  }
+</script>
 
 <style>
 
