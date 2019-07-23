@@ -24,7 +24,7 @@
           </el-input>
         </el-form-item>        
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">Submit</el-button>
+          <el-button type="primary" @submit.prevent="submitForm('ruleForm')">Submit</el-button>
           <el-button @click="resetForm('ruleForm')">Reset</el-button>
         </el-form-item>
       </el-form>
