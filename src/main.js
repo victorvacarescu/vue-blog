@@ -9,7 +9,7 @@ Vue.config.productionTip = false
 Vue.use(VueResource)
 
 Vue.http.options.root = 'http://www.vue.blog.menut.ro/';
-
+Vue.http.options.emulateJSON = true
 // Vue.http.headers.common['Token' ] = settings.get_token()
 // Vue.http.headers.common['IdUser'] = settings.get_id_user()
 // Vue.http.headers.common['AppCmd'] = '1'
