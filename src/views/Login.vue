@@ -24,7 +24,7 @@
           </el-input>
         </el-form-item>        
         <el-form-item>
-          <el-button type="primary" @submit.prevent="submitForm('ruleForm')">Submit</el-button>
+          <el-button type="primary" @click="submitForm('ruleForm')">Submit</el-button>
           <el-button @click="resetForm('ruleForm')">Reset</el-button>
         </el-form-item>
       </el-form>
@@ -69,10 +69,19 @@ export default {
     },
   methods: {
     submitForm(formName) {
+      console.log('da')
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log(this.ruleForm.email,this.ruleForm.pass)
-          alert('submit!');
+          this.$http
+            .post('api/login/index',this.ruleForm)
+            .then(
+                function(response){
+                    console.log(response);
+                    this.users = response.body.Users;                    
+                }                
+            )
+          console.log(this.ruleForm)
+          // alert('submit!');
         } else {
           console.log('error submit!!');
           return false;
