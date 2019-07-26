@@ -1,11 +1,30 @@
 <template>
   <div>
     <Header/>
-    <h1>Login</h1>
-    
-    <br><hr>
-    <el-col :span="6" :offset="9">
-      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
+    <h1>Login</h1>    
+    <br><hr>    
+    <el-col :span="5" :offset="9">
+      <template  v-if="alertMessage.state == 'error'">
+        <el-alert
+          :title="alertMessage.title"
+          :type="alertMessage.type">
+        </el-alert>
+        <br/>
+      </template>
+      <template  v-if="alertMessage.state == 'success'">
+        <el-alert
+          :title="alertMessage.title"
+          :type="alertMessage.type">
+        </el-alert>
+        <br/>
+      </template>
+    <!-- TODO:  creare v-if pentru success si o functie setTimeout() -->
+
+      <el-form 
+      :model="ruleForm"
+      label-position="left"
+      status-icon :rules="rules" ref="ruleForm" 
+      label-width="120px" class="demo-ruleForm">
         <el-form-item 
         label="E-mail" 
         prop="email">
@@ -24,8 +43,16 @@
           </el-input>
         </el-form-item>        
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">Submit</el-button>
-          <el-button @click="resetForm('ruleForm')">Reset</el-button>
+          <el-button 
+          type="primary" 
+          @keyup.enter="submitForm('ruleForm')">
+      <!-- TODO:    creare functie evenimente @keyup.enter="submitForm('ruleForm')" -->
+            Submit
+          </el-button>
+          <el-button 
+          @click="resetForm('ruleForm')">
+            Reset
+          </el-button>
         </el-form-item>
       </el-form>
     </el-col>
@@ -43,6 +70,12 @@ export default {
   },
   data() {      
       return {
+        token: '',
+        alertMessage: {
+          state: '',
+          title: '',
+          type: ''
+        },     
         ruleForm: {
           email: '',
           pass: ''
@@ -55,7 +88,7 @@ export default {
             },                   
             { type: 'email', 
               message: 'Please input correct email address', 
-              trigger: ['blur', 'change'] 
+              trigger: 'blur' 
             }
           ],
           pass: [
@@ -69,19 +102,35 @@ export default {
     },
   methods: {
     submitForm(formName) {
-      console.log('da')
+      // console.log('da')
       this.$refs[formName].validate((valid) => {
-        if (valid) {
+        if (valid) {          
           this.$http
-            .post('api/login/index',this.ruleForm)
-            .then(
-                function(response){
-                    console.log(response);
-                    this.users = response.body.Users;                    
-                }                
-            )
-          console.log(this.ruleForm)
-          // alert('submit!');
+              .post('api/login/index',this.ruleForm)             
+              .then(
+                  function(response){
+                    console.log(response)
+                    if (response.body.ret.Raspuns == true) {
+                      console.log('merge')
+                      //this.token = response.body.data.Token
+                      //this.$router.push({path: '/things'})
+                      this.alertMessage = {
+                        state: 'success',
+                        title: 'Logare efectuata cu succes! ' 
+                                + 'cu Token-ul: ' + response.body.data.Token 
+                                + ' la data de: ' + response.body.data.Date,
+                        type: 'success'
+                      }
+                    } else {
+                      this.alertMessage = {
+                        state: 'error',
+                        title: 'username sau parola gresite',
+                        type: 'error'
+                      }
+                    }                                                    
+                  }                
+            )          
+        //alert('submit!');
         } else {
           console.log('error submit!!');
           return false;
@@ -91,6 +140,14 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }
+  },
+  // mounted() {
+  //   if (localStorage.token){
+  //     this.token = localStorage.token;
+  //   }
+  // }
+  watch(){
+
   }
 }
 </script>

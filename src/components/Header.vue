@@ -12,20 +12,13 @@
 <script>
   export default {
     data() {
-      return {
-        activeIndex: '1'        
+      return {               
       };
-    },
-    methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
-      }
-    }
+    }    
   }
 </script>
 
 <style>
-
 #nav {
   padding: 30px;
 }

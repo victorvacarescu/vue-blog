@@ -17,8 +17,7 @@
                         :body-style="{ padding: '0px' }" 
                         shadow="hover">
                             <el-image                            
-                            :src='"http://www.blog.menut.ro/assets/img/" + articol.Imagine' 
-                            :fit="scale-down" 
+                            :src='"http://www.blog.menut.ro/assets/img/" + articol.Imagine'                              
                             alt="" 
                             class="image">
                             </el-image>

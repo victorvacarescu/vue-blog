@@ -53,7 +53,7 @@ export default {
             this.$http
             .post('api/users/getServerInfo',{})
             .then(
-                function(response){
+                function(response){                    
                     console.log(response);
                     this.users = response.body.Users;                    
                 }                
