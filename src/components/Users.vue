@@ -1,5 +1,9 @@
-<template>
+<template>    
     <div class="users">
+        <div>
+            <el-input v-model="Filters.Nume"></el-input>
+            <el-button @click="interogareServer()">Cauta</el-button>
+        </div>
         <el-table
         :data="users"
         style="width: 100%">
@@ -45,13 +49,14 @@ export default {
     name: 'Users',
     data() {
         return {
-            users: [],                  
+            users: [], 
+            Filters: {Nume:''}                 
         }
     },    
     methods: {
         interogareServer(){            
             this.$http
-            .post('api/users/getServerInfo',{})
+            .post('api/users/getServerInfo',{Filters:this.Filters})
             .then(
                 function(response){                    
                     console.log(response);
