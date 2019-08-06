@@ -45,8 +45,8 @@
         <el-form-item>
           <el-button 
           type="primary" 
-          @keyup.enter="submitForm('ruleForm')">
-      <!-- TODO:    creare functie evenimente @keyup.enter="submitForm('ruleForm')" -->
+          @click="submitForm('ruleForm')">
+      <!-- TODO:    creare functie evenimente @keyup.enter sau @click="submitForm('ruleForm')" -->
             Submit
           </el-button>
           <el-button 
@@ -74,6 +74,7 @@ export default {
         alertMessage: {
           state: '',
           title: '',
+          description: '',
           type: ''
         },     
         ruleForm: {
@@ -102,7 +103,7 @@ export default {
     },
   methods: {
     submitForm(formName) {
-      // console.log('da')
+      console.log('da')
       this.$refs[formName].validate((valid) => {
         if (valid) {          
           this.$http
@@ -116,9 +117,10 @@ export default {
                       //this.$router.push({path: '/things'})
                       this.alertMessage = {
                         state: 'success',
-                        title: 'Logare efectuata cu succes! ' 
-                                + 'cu Token-ul: ' + response.body.data.Token 
-                                + ' la data de: ' + response.body.data.Date,
+                        title: 'Logare efectuata cu succes! ',
+                        description:'la data de: ' + response.body.data.Date
+                                    + ' cu Token-ul: ' + response.body.data.Token, 
+                                
                         type: 'success'
                       }
                     } else {
@@ -129,7 +131,7 @@ export default {
                       }
                     }                                                    
                   }                
-            )          
+              )          
         //alert('submit!');
         } else {
           console.log('error submit!!');
@@ -146,9 +148,7 @@ export default {
   //     this.token = localStorage.token;
   //   }
   // }
-  watch(){
-
-  }
+  
 }
 </script>
 
