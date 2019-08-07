@@ -18,8 +18,14 @@
                 </option>
             </select>
             <el-input placeholder="option.text"></el-input>-->
-            <el-autocomplete v-model="Filters" :fetch-suggestions="Filters" placeholder="Alege categoria" @select="handleSelect">                                                                
-            </el-autocomplete>
+            <el-input placeholder="Please input" v-model="Filters">
+                <el-select v-model="Filters" slot="prepend" placeholder="Select">
+                    <el-option label="Username" value=Filters.Username></el-option>
+                    <el-option label="Nume" value="Filters.Nume"></el-option>
+                    <el-option label="Email" value="Filters.Email"></el-option>
+                </el-select>
+                <el-button slot="append" icon="el-icon-search"></el-button>
+            </el-input>
         </el-col>             
         <el-table :data="users" style="width: 100%">                
             <el-table-column prop="Prenume"  label="Prenume" width="180"></el-table-column>                                                            
