@@ -5,54 +5,27 @@
     <br><hr>    
     <el-col :span="5" :offset="9">
       <template  v-if="alertMessage.state == 'error'">
-        <el-alert
-          :title="alertMessage.title"
-          :type="alertMessage.type">
-        </el-alert>
+        <el-alert :title="alertMessage.title" :type="alertMessage.type"></el-alert>                            
         <br/>
       </template>
       <template  v-if="alertMessage.state == 'success'">
-        <el-alert
-          :title="alertMessage.title"
-          :type="alertMessage.type">
-        </el-alert>
-        <br/>
+        <el-alert :title="alertMessage.title" :type="alertMessage.type"></el-alert>
+        <br/>                            
       </template>
     <!-- TODO:  creare v-if pentru success si o functie setTimeout() -->
 
-      <el-form 
-      :model="ruleForm"
-      label-position="left"
-      status-icon :rules="rules" ref="ruleForm" 
-      label-width="120px" class="demo-ruleForm">
-        <el-form-item 
-        label="E-mail" 
-        prop="email">
-          <el-input 
-          v-model="ruleForm.email" 
-          autocomplete="off">
-          </el-input>
+      <el-form :model="ruleForm" label-position="left" status-icon label-width="120px" class="demo-ruleForm"
+               :rules="rules" ref="ruleForm">                                   
+        <el-form-item label="E-mail" prop="email">                
+          <el-input v-model="ruleForm.email" autocomplete="off"></el-input>                              
         </el-form-item>
-        <el-form-item 
-        label="Password" 
-        prop="pass">
-          <el-input 
-          type="password" 
-          v-model="ruleForm.pass" 
-          autocomplete="off">
-          </el-input>
+        <el-form-item label="Password" prop="pass">                
+          <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>                                        
         </el-form-item>        
         <el-form-item>
-          <el-button 
-          type="primary" 
-          @click="submitForm('ruleForm')">
-      <!-- TODO:    creare functie evenimente @keyup.enter sau @click="submitForm('ruleForm')" -->
-            Submit
-          </el-button>
-          <el-button 
-          @click="resetForm('ruleForm')">
-            Reset
-          </el-button>
+          <el-button type="primary" @click="submitForm('ruleForm')">Submit</el-button>                              
+      <!-- TODO:    creare functie evenimente @keyup.enter sau @click="submitForm('ruleForm')" -->            
+          <el-button @click="resetForm('ruleForm')">Reset</el-button>                                
         </el-form-item>
       </el-form>
     </el-col>

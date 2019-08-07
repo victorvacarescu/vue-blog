@@ -2,7 +2,6 @@
     <div class="demo">
         <Header/>
         <h1>Things</h1>
-
         <el-container>
             <el-aside style="text-align: left">                
                 <el-menu :default-openeds="['1']">                    
@@ -19,7 +18,6 @@
                     </el-submenu>                    
                 </el-menu>
             </el-aside>
-
             <el-container>
                 <el-header style="text-align: right">
                     <el-dropdown>
@@ -34,8 +32,7 @@
                     <Users/>
                 </el-main>
             </el-container>
-        </el-container>
-                
+        </el-container>                
     </div>
 </template>
 
@@ -53,7 +50,6 @@ export default {
 </script>
 
 <style scoped>
-
    h1 {
        margin-bottom: 40px;
    }
@@ -62,6 +58,5 @@ export default {
     color: #333;
     line-height: 60px;
   }
-
 </style>
 
